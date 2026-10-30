@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RESTO-VISION | Supervision intelligente</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">R</div><div><b>RESTO<span>VISION</span></b><small>SMART RESTAURANT</small></div></div>
+    <div class="nav-label">ESPACE DE TRAVAIL</div>
+    <a class="nav active" href="#"><span>▦</span> Vue d'ensemble</a>
+    <a class="nav" href="#camera"><span>◉</span> Surveillance caméra</a>
+    <a class="nav" href="#tables"><span>▤</span> Gestion des tables</a>
+    <div class="sidebar-bottom"><div class="live-dot"></div><div><b>Système local</b><small>Prototype v0.1</small></div></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">CENTRE DE CONTRÔLE / RESTAURANT</div><h1>Vue d'ensemble</h1></div>
+      <div class="top-actions"><span class="system-status"><i></i><span id="systemLabel">Initialisation…</span></span><div class="avatar">RV</div></div>
+    </header>
+
+    <section class="welcome">
+      <div><div class="eyebrow light">SUPERVISION INTELLIGENTE</div><h2>Votre restaurant, en temps réel.</h2><p>Suivez l'occupation des tables et les flux de clients depuis une seule interface.</p></div>
+      <div class="welcome-mark">RV<span>●</span></div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric"><div class="metric-top"><span>TABLES OCCUPÉES</span><span class="metric-icon orange">▦</span></div><strong id="occupied">—</strong><small><span id="totalTables">—</span> tables au total</small></article>
+      <article class="metric"><div class="metric-top"><span>TABLES DISPONIBLES</span><span class="metric-icon green">✓</span></div><strong id="free">—</strong><small>Prêtes à accueillir</small></article>
+      <article class="metric"><div class="metric-top"><span>PERSONNES DÉTECTÉES</span><span class="metric-icon blue">♙</span></div><strong id="people">—</strong><small>Estimation en direct</small></article>
+      <article class="metric"><div class="metric-top"><span>OCCUPATION MOYENNE</span><span class="metric-icon purple">◷</span></div><strong id="avg">—</strong><small>Sur les tables occupées</small></article>
+    </section>
+
+    <section class="content-grid" id="camera">
+      <article class="panel camera-panel">
+        <div class="panel-heading"><div><div class="eyebrow">VISION PAR ORDINATEUR</div><h3>Flux caméra en direct</h3></div><span class="live-pill"><i></i> LIVE</span></div>
+        <div class="video-wrap"><img id="video" src="/api/video" alt="Flux webcam annoté"><div id="videoOverlay" class="video-overlay">En attente du flux caméra…</div></div>
+        <div class="camera-footer"><span><i class="green-dot"></i> Détection des personnes</span><span id="fps">0 FPS</span><span id="cameraName">Caméra 0</span></div>
+      </article>
+
+      <article class="panel insight-panel">
+        <div class="panel-heading"><div><div class="eyebrow">ÉTAT DU SYSTÈME</div><h3>Analyse en direct</h3></div><span class="spark">✳</span></div>
+        <div class="insight-main"><div class="pulse-ring">◉</div><div><b id="visionState">Démarrage</b><small id="visionDetail">Initialisation du modèle et de la webcam.</small></div></div>
+        <div class="insight-row"><span>Modèle IA</span><b id="modelName">YOLO</b></div>
+        <div class="insight-row"><span>Source vidéo</span><b>Webcam locale</b></div>
+        <div class="insight-row"><span>Suivi</span><b>ByteTrack</b></div>
+        <div class="note"><b>À savoir</b><p>Les zones de tables sont des polygones configurables. Ajustez-les dans <code>config/tables.json</code> selon le cadrage réel de votre caméra.</p></div>
+      </article>
+    </section>
+
+    <section class="panel tables-panel" id="tables">
+      <div class="panel-heading"><div><div class="eyebrow">OCCUPATION EN TEMPS RÉEL</div><h3>État des tables</h3></div><div class="legend"><span><i class="green-dot"></i> Occupée</span><span><i class="gold-dot"></i> Libre</span></div></div>
+      <div class="table-grid" id="tableGrid"><div class="empty">Chargement des tables…</div></div>
+    </section>
+    <footer>RESTO-VISION <span>•</span> Prototype de recherche — traitement vidéo local</footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
